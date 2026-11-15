@@ -3,6 +3,7 @@ import { CATEGORIAS } from "../data/productos";
 import { useProductos } from "../context/ProductsContext";
 import { useOfertas } from "../context/OfertasContext";
 import ProductCard from "./ProductCard";
+import videoBienvenida from "../assets/video/bienvenida.mp4";
 
 function Home() {
   const { productos } = useProductos();
@@ -20,7 +21,7 @@ function Home() {
     <>
       <section className="hero">
         <video autoPlay muted loop playsInline>
-          <source src="src/assets/video/bienvenida.mp4" type="video/mp4" />
+          <source src={videoBienvenida} type="video/mp4" />
         </video>
         <div className="hero-overlay">
           <div className="contenedor">
