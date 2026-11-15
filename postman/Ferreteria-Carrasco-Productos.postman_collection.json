@@ -1,0 +1,66 @@
+{
+  "info": {
+    "name": "Ferretería Carrasco - Microservicio de productos",
+    "description": "Pruebas CRUD para el servicio Spring Boot de productos. Inicia el servicio local en el puerto 8081 antes de ejecutar la colección.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Estado del servicio",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/health" }
+    },
+    {
+      "name": "Listar productos",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/productos" }
+    },
+    {
+      "name": "Consultar producto semilla HM001",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/productos/HM001" }
+    },
+    {
+      "name": "Crear producto de prueba",
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Producto creado', function () { pm.response.to.have.status(201); });"
+          ]
+        }
+      }],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"codigo\": \"{{codigoNuevo}}\",\n  \"nombre\": \"Producto de prueba Postman\",\n  \"categoria\": \"herramientas-manuales\",\n  \"precio\": 12500,\n  \"stock\": 10,\n  \"stockCritico\": 2,\n  \"descripcion\": \"Producto temporal para comprobar el CRUD\",\n  \"imagen\": \"/img/productos/sin-foto.png\"\n}"
+        },
+        "url": "{{baseUrl}}/api/productos"
+      }
+    },
+    {
+      "name": "Consultar producto creado",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/productos/{{codigoNuevo}}" }
+    },
+    {
+      "name": "Editar producto de prueba",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"codigo\": \"{{codigoNuevo}}\",\n  \"nombre\": \"Producto actualizado desde Postman\",\n  \"categoria\": \"herramientas-manuales\",\n  \"precio\": 13500,\n  \"stock\": 8,\n  \"stockCritico\": 2,\n  \"descripcion\": \"Actualización de prueba\",\n  \"imagen\": \"/img/productos/sin-foto.png\"\n}"
+        },
+        "url": "{{baseUrl}}/api/productos/{{codigoNuevo}}"
+      }
+    },
+    {
+      "name": "Eliminar producto de prueba",
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/api/productos/{{codigoNuevo}}" }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8081" },
+    { "key": "codigoNuevo", "value": "ZZ999" }
+  ]
+}

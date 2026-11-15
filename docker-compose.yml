@@ -1,0 +1,127 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: ferreteria-mysql
+    environment:
+      MYSQL_DATABASE: ferreteria
+      MYSQL_USER: ferreteria
+      MYSQL_PASSWORD: ${DB_PASSWORD:-cambia-esta-clave}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-cambia-la-clave-root}
+    volumes:
+      - mysql-datos:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-cambia-la-clave-root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  ms-productos:
+    build: ./backend
+    container_name: ferreteria-ms-productos
+    ports:
+      - "8081:8081"
+    environment:
+      SERVER_PORT: 8081
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}
+      SPRING_PROFILES_ACTIVE: mysql
+      DB_URL: jdbc:mysql://mysql:3306/ferreteria
+      DB_USER: ferreteria
+      DB_PASSWORD: ${DB_PASSWORD:-cambia-esta-clave}
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET en .env}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  ms-usuarios:
+    build: ./microservicios/ms-usuarios
+    container_name: ferreteria-ms-usuarios
+    ports:
+      - "8082:8082"
+    environment:
+      SERVER_PORT: 8082
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}
+      SPRING_PROFILES_ACTIVE: mysql
+      DB_URL: jdbc:mysql://mysql:3306/ferreteria
+      DB_USER: ferreteria
+      DB_PASSWORD: ${DB_PASSWORD:-cambia-esta-clave}
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET en .env}
+      ADMIN_CORREO: ${ADMIN_CORREO:-luis.ferreteria373@gmail.com}
+      ADMIN_CLAVE: ${ADMIN_CLAVE:-admin123}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  ms-pedidos:
+    build: ./microservicios/ms-pedidos
+    container_name: ferreteria-ms-pedidos
+    ports:
+      - "8083:8083"
+    environment:
+      SERVER_PORT: 8083
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}
+      SPRING_PROFILES_ACTIVE: mysql
+      DB_URL: jdbc:mysql://mysql:3306/ferreteria
+      DB_USER: ferreteria
+      DB_PASSWORD: ${DB_PASSWORD:-cambia-esta-clave}
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET en .env}
+      PRODUCTOS_URL: http://ms-productos:8081
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  ms-contacto:
+    build: ./microservicios/ms-contacto
+    container_name: ferreteria-ms-contacto
+    ports:
+      - "8084:8084"
+    environment:
+      SERVER_PORT: 8084
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}
+      SPRING_PROFILES_ACTIVE: mysql
+      DB_URL: jdbc:mysql://mysql:3306/ferreteria
+      DB_USER: ferreteria
+      DB_PASSWORD: ${DB_PASSWORD:-cambia-esta-clave}
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET en .env}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  ms-pagos:
+    build: ./microservicios/ms-pagos
+    container_name: ferreteria-ms-pagos
+    ports:
+      - "8085:8085"
+    environment:
+      SERVER_PORT: 8085
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}
+      SPRING_PROFILES_ACTIVE: mysql
+      DB_URL: jdbc:mysql://mysql:3306/ferreteria
+      DB_USER: ferreteria
+      DB_PASSWORD: ${DB_PASSWORD:-cambia-esta-clave}
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET en .env}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8081}
+        VITE_USUARIOS_API_URL: ${VITE_USUARIOS_API_URL:-http://localhost:8082}
+        VITE_PEDIDOS_API_URL: ${VITE_PEDIDOS_API_URL:-http://localhost:8083}
+        VITE_CONTACTO_API_URL: ${VITE_CONTACTO_API_URL:-http://localhost:8084}
+        VITE_PAGOS_API_URL: ${VITE_PAGOS_API_URL:-http://localhost:8085}
+    container_name: ferreteria-frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+volumes:
+  mysql-datos:

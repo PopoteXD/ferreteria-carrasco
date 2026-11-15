@@ -1,0 +1,1063 @@
+{
+  "info": {
+    "_postman_id": "f5c1c0d0-1111-2222-3333-445566778899",
+    "name": "Ferretería Carrasco — Microservicios",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "productos",
+      "value": "http://localhost:8081"
+    },
+    {
+      "key": "usuarios",
+      "value": "http://localhost:8082"
+    },
+    {
+      "key": "pedidos",
+      "value": "http://localhost:8083"
+    },
+    {
+      "key": "contacto",
+      "value": "http://localhost:8084"
+    },
+    {
+      "key": "pagos",
+      "value": "http://localhost:8085"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "adminCorreo",
+      "value": "luis.ferreteria373@gmail.com"
+    },
+    {
+      "key": "adminClave",
+      "value": "<CLAVE_ADMIN>"
+    }
+  ],
+  "item": [
+    {
+      "name": "ms-productos (8081)",
+      "item": [
+        {
+          "name": "Health + productos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{productos}}/api/productos",
+              "host": [
+                "{{productos}}"
+              ],
+              "path": [
+                "api",
+                "productos"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Producto por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{productos}}/api/productos/HM001",
+              "host": [
+                "{{productos}}"
+              ],
+              "path": [
+                "api",
+                "productos",
+                "HM001"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Crear producto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{productos}}/api/productos",
+              "host": [
+                "{{productos}}"
+              ],
+              "path": [
+                "api",
+                "productos"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codigo\": \"ZZ001\",\n  \"nombre\": \"Producto nuevo\",\n  \"categoria\": \"plomeria\",\n  \"precio\": 1500,\n  \"stock\": 10,\n  \"stockCritico\": 2,\n  \"descripcion\": \"Prueba\",\n  \"imagen\": \"/img/productos/x.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Actualizar producto",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{productos}}/api/productos/ZZ001",
+              "host": [
+                "{{productos}}"
+              ],
+              "path": [
+                "api",
+                "productos",
+                "ZZ001"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codigo\": \"ZZ001\",\n  \"nombre\": \"Producto actualizado\",\n  \"categoria\": \"plomeria\",\n  \"precio\": 1800,\n  \"stock\": 9,\n  \"stockCritico\": 2,\n  \"descripcion\": \"Prueba\",\n  \"imagen\": \"/img/productos/x.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Eliminar producto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{productos}}/api/productos/ZZ001",
+              "host": [
+                "{{productos}}"
+              ],
+              "path": [
+                "api",
+                "productos",
+                "ZZ001"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{productos}}/api/health",
+              "host": [
+                "{{productos}}"
+              ],
+              "path": [
+                "api",
+                "health"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Ofertas vigentes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{productos}}/api/ofertas/vigentes",
+              "host": [
+                "{{productos}}/api/ofertas/vigentes"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Listar ofertas (ADMIN)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{productos}}/api/ofertas",
+              "host": [
+                "{{productos}}/api/ofertas"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Sin token = 401",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{productos}}/api/productos/ZZ001",
+              "host": [
+                "{{productos}}/api/productos/ZZ001"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('401 sin token', () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ms-usuarios (8082) — auth, usuarios y ubicaciones",
+      "item": [
+        {
+          "name": "Registrar cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{usuarios}}/api/auth/register",
+              "host": [
+                "{{usuarios}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"run\": \"123456785\",\n  \"nombre\": \"Ana\",\n  \"apellidos\": \"Pérez Soto\",\n  \"correo\": \"ana@gmail.com\",\n  \"clave\": \"secreta1\",\n  \"region\": \"Region de Tarapaca\",\n  \"comuna\": \"Iquique\",\n  \"direccion\": \"Calle Uno 123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Iniciar sesión",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{usuarios}}/api/auth/login",
+              "host": [
+                "{{usuarios}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"correo\": \"{{adminCorreo}}\",\n  \"clave\": \"{{adminClave}}\"\n}"
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('Login 200 con token', () => { pm.response.to.have.status(200); pm.expect(r.token).to.be.a('string'); });",
+                  "pm.collectionVariables.set('token', r.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Crear usuario (ADMIN)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{usuarios}}/api/usuarios",
+              "host": [
+                "{{usuarios}}/api/usuarios"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"run\": \"222222222\",\n  \"nombre\": \"Nuevo\",\n  \"apellidos\": \"Usuario\",\n  \"correo\": \"nuevo@gmail.com\",\n  \"clave\": \"clave123\",\n  \"tipoUsuario\": \"Cliente\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Cambiar estado activo/inactivo (ADMIN)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{usuarios}}/api/usuarios/2/estado",
+              "host": [
+                "{{usuarios}}/api/usuarios/2/estado"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"activo\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "Cambiar rol (ADMIN)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{usuarios}}/api/usuarios/2/rol",
+              "host": [
+                "{{usuarios}}/api/usuarios/2/rol"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipoUsuario\": \"Cliente\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Renovar token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{usuarios}}/api/auth/refresh",
+              "host": [
+                "{{usuarios}}/api/auth/refresh"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Listar usuarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{usuarios}}/api/usuarios",
+              "host": [
+                "{{usuarios}}"
+              ],
+              "path": [
+                "api",
+                "usuarios"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Usuarios por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{usuarios}}/api/usuarios/1",
+              "host": [
+                "{{usuarios}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "1"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Actualizar perfil",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{usuarios}}/api/usuarios/1",
+              "host": [
+                "{{usuarios}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "1"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Ana\",\n  \"apellidos\": \"Pérez Soto\",\n  \"region\": \"Region de Tarapaca\",\n  \"comuna\": \"Iquique\",\n  \"direccion\": \"Calle Uno 456\",\n  \"clave\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Eliminar usuario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{usuarios}}/api/usuarios/1",
+              "host": [
+                "{{usuarios}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "1"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Regiones",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{usuarios}}/api/ubicaciones/regiones",
+              "host": [
+                "{{usuarios}}"
+              ],
+              "path": [
+                "api",
+                "ubicaciones",
+                "regiones"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Comunas de una región",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{usuarios}}/api/ubicaciones/comunas?region=Region de Tarapaca",
+              "host": [
+                "{{usuarios}}"
+              ],
+              "path": [
+                "api",
+                "ubicaciones",
+                "comunas?region=Region de Tarapaca"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{usuarios}}/api/health",
+              "host": [
+                "{{usuarios}}"
+              ],
+              "path": [
+                "api",
+                "health"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "ms-pedidos (8083) — pedidos y ventas",
+      "item": [
+        {
+          "name": "Crear pedido",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{pedidos}}/api/pedidos",
+              "host": [
+                "{{pedidos}}"
+              ],
+              "path": [
+                "api",
+                "pedidos"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cliente\": {\n    \"nombre\": \"Ana Pérez\",\n    \"correo\": \"ana@gmail.com\"\n  },\n  \"lineas\": [\n    {\n      \"codigo\": \"HM001\",\n      \"nombre\": \"Martillo de Uña 16 oz\",\n      \"precio\": 7990,\n      \"cantidad\": 2\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Listar pedidos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pedidos}}/api/pedidos",
+              "host": [
+                "{{pedidos}}"
+              ],
+              "path": [
+                "api",
+                "pedidos"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Pedidos por correo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pedidos}}/api/pedidos?correo=ana@gmail.com",
+              "host": [
+                "{{pedidos}}"
+              ],
+              "path": [
+                "api",
+                "pedidos?correo=ana@gmail.com"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Pedido por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pedidos}}/api/pedidos/PED-1001",
+              "host": [
+                "{{pedidos}}"
+              ],
+              "path": [
+                "api",
+                "pedidos",
+                "PED-1001"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Cambiar estado",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{pedidos}}/api/pedidos/PED-1001/estado",
+              "host": [
+                "{{pedidos}}"
+              ],
+              "path": [
+                "api",
+                "pedidos",
+                "PED-1001",
+                "estado"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"Enviado\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Resumen de ventas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pedidos}}/api/pedidos/resumen",
+              "host": [
+                "{{pedidos}}"
+              ],
+              "path": [
+                "api",
+                "pedidos",
+                "resumen"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pedidos}}/api/health",
+              "host": [
+                "{{pedidos}}"
+              ],
+              "path": [
+                "api",
+                "health"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "ms-contacto (8084) — mensajes de contacto",
+      "item": [
+        {
+          "name": "Enviar mensaje",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{contacto}}/api/contacto",
+              "host": [
+                "{{contacto}}"
+              ],
+              "path": [
+                "api",
+                "contacto"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Ana\",\n  \"correo\": \"ana@gmail.com\",\n  \"asunto\": \"Consulta por pintura\",\n  \"contenido\": \"¿Tienen pintura para exteriores?\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "Listar mensajes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{contacto}}/api/contacto",
+              "host": [
+                "{{contacto}}"
+              ],
+              "path": [
+                "api",
+                "contacto"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Marcar leído",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{contacto}}/api/contacto/1/leido",
+              "host": [
+                "{{contacto}}"
+              ],
+              "path": [
+                "api",
+                "contacto",
+                "1",
+                "leido"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Eliminar mensaje",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{contacto}}/api/contacto/1",
+              "host": [
+                "{{contacto}}"
+              ],
+              "path": [
+                "api",
+                "contacto",
+                "1"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{contacto}}/api/health",
+              "host": [
+                "{{contacto}}"
+              ],
+              "path": [
+                "api",
+                "health"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "ms-pagos (8085) — pagos simulados",
+      "item": [
+        {
+          "name": "Registrar pago (Débito)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{pagos}}/api/pagos",
+              "host": [
+                "{{pagos}}"
+              ],
+              "path": [
+                "api",
+                "pagos"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pedidoId\": \"PED-1001\",\n  \"metodo\": \"Débito\",\n  \"monto\": 20970\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Registrar pago (Transferencia)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{pagos}}/api/pagos",
+              "host": [
+                "{{pagos}}"
+              ],
+              "path": [
+                "api",
+                "pagos"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pedidoId\": \"PED-1002\",\n  \"metodo\": \"Transferencia\",\n  \"monto\": 20970\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Listar pagos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pagos}}/api/pagos",
+              "host": [
+                "{{pagos}}"
+              ],
+              "path": [
+                "api",
+                "pagos"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Pagos por pedido",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pagos}}/api/pagos?pedidoId=PED-1001",
+              "host": [
+                "{{pagos}}"
+              ],
+              "path": [
+                "api",
+                "pagos?pedidoId=PED-1001"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Pago por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pagos}}/api/pagos/1",
+              "host": [
+                "{{pagos}}"
+              ],
+              "path": [
+                "api",
+                "pagos",
+                "1"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Confirmar transferencia",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{pagos}}/api/pagos/1/confirmar",
+              "host": [
+                "{{pagos}}"
+              ],
+              "path": [
+                "api",
+                "pagos",
+                "1",
+                "confirmar"
+              ],
+              "protocol": null
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pagos}}/api/health",
+              "host": [
+                "{{pagos}}"
+              ],
+              "path": [
+                "api",
+                "health"
+              ],
+              "protocol": null
+            },
+            "description": "",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  }
+}
