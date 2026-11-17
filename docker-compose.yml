@@ -121,6 +121,12 @@ services:
     container_name: ferreteria-frontend
     ports:
       - "80:80"
+    depends_on:
+      - ms-productos
+      - ms-usuarios
+      - ms-pedidos
+      - ms-contacto
+      - ms-pagos
     restart: unless-stopped
 
 volumes:
