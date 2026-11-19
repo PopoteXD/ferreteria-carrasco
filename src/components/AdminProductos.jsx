@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CATEGORIAS, formatoCLP } from "../data/productos";
 import { useProductos } from "../context/ProductsContext";
+import { useAuth } from "../context/AuthContext";
 
 function AdminProductos() {
   const { productos, eliminarProducto, cargandoProductos, errorProductos, recargarProductos } = useProductos();
+  const { usuario } = useAuth() || {};
+  const esAdmin = !usuario || usuario.tipoUsuario === "Administrador";
   const [errorEliminar, setErrorEliminar] = useState("");
   const [busqueda, setBusqueda] = useState("");
   const [categoria, setCategoria] = useState("");
@@ -54,7 +57,7 @@ function AdminProductos() {
         <h2 style={{ margin: 0, fontSize: "1.1rem" }}>Catálogo de productos</h2>
         <div className="grupo-botones">
           <button type="button" className="btn btn-secundario btn-sm" onClick={exportarCSV}>Exportar CSV</button>
-          <Link to="/admin/productos/nuevo" className="btn btn-primario btn-sm">+ Nuevo producto</Link>
+          {esAdmin && <Link to="/admin/productos/nuevo" className="btn btn-primario btn-sm">+ Nuevo producto</Link>}
         </div>
       </div>
 
@@ -119,10 +122,16 @@ function AdminProductos() {
                     : <span className="pastilla ok">Normal</span>}
                 </td>
                 <td className="acciones-tabla">
-                  <Link to={`/admin/productos/editar/${p.codigo}`}>Editar</Link>
-                  <button type="button" className="eliminar" onClick={() => eliminar(p)}>
-                    Eliminar
-                  </button>
+                  {esAdmin ? (
+                    <>
+                      <Link to={`/admin/productos/editar/${p.codigo}`}>Editar</Link>
+                      <button type="button" className="eliminar" onClick={() => eliminar(p)}>
+                        Eliminar
+                      </button>
+                    </>
+                  ) : (
+                    <Link to={`/producto/${p.codigo}`}>Ver detalle</Link>
+                  )}
                 </td>
               </tr>
             );

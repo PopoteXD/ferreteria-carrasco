@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/ofertas")
+@RequestMapping({"/api/ofertas", "/api/v1/ofertas"})
 public class OfertaController {
 
     private final OfertaService service;

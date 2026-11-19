@@ -47,9 +47,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests(a -> a
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/error", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/health", "/api/productos/**", "/api/ofertas/vigentes",
-                                "/api/ofertas/precio/**").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/api/productos/*").hasAnyRole("ADMIN", "SERVICIO")
+                        .requestMatchers(HttpMethod.GET, "/api/health", "/api/productos/**", "/api/v1/productos/**",
+                                "/api/ofertas/vigentes", "/api/v1/ofertas/vigentes",
+                                "/api/ofertas/precio/**", "/api/v1/ofertas/precio/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/ofertas", "/api/v1/ofertas").hasAnyRole("ADMIN", "VENDEDOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/productos/*", "/api/v1/productos/*")
+                        .hasAnyRole("ADMIN", "SERVICIO")
                         .anyRequest().hasRole("ADMIN"))
                 .oauth2ResourceServer(o -> o.jwt(j -> j.jwtAuthenticationConverter(convertidor)));
         return http.build();

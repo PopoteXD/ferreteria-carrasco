@@ -4,21 +4,21 @@ import { productosApiHabilitada, solicitar } from "./productosApi";
 export const ofertasApiHabilitada = productosApiHabilitada;
 
 export function listarOfertasApi() {
-  return solicitar("/api/ofertas");
+  return solicitar("/api/v1/ofertas");
 }
 
 export function crearOfertaApi(oferta) {
-  return solicitar("/api/ofertas", { method: "POST", body: JSON.stringify(oferta) });
+  return solicitar("/api/v1/ofertas", { method: "POST", body: JSON.stringify(oferta) });
 }
 
 export function actualizarOfertaApi(id, oferta) {
-  return solicitar(`/api/ofertas/${id}`, { method: "PUT", body: JSON.stringify(oferta) });
+  return solicitar(`/api/v1/ofertas/${id}`, { method: "PUT", body: JSON.stringify(oferta) });
 }
 
 export function cambiarActivaOfertaApi(id, activa) {
-  return solicitar(`/api/ofertas/${id}/activa?valor=${activa}`, { method: "PATCH" });
+  return solicitar(`/api/v1/ofertas/${id}/activa?valor=${activa}`, { method: "PATCH" });
 }
 
 export function eliminarOfertaApi(id) {
-  return solicitar(`/api/ofertas/${id}`, { method: "DELETE" });
+  return solicitar(`/api/v1/ofertas/${id}`, { method: "DELETE" });
 }

@@ -5,6 +5,6 @@ import jakarta.validation.constraints.Pattern;
 
 public record RolRequest(
         @NotBlank(message = "El rol es obligatorio")
-        @Pattern(regexp = "Cliente|Administrador", message = "Rol permitido: Cliente o Administrador")
+        @Pattern(regexp = "Cliente|Administrador|Vendedor", message = "Rol permitido: Cliente, Vendedor o Administrador")
         String tipoUsuario) {
 }

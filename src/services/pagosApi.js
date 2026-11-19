@@ -43,12 +43,12 @@ async function solicitar(ruta, opciones = {}) {
 }
 
 export function crearPagoApi(datos) {
-  return solicitar("/api/pagos", { method: "POST", body: JSON.stringify(datos) });
+  return solicitar("/api/v1/pagos", { method: "POST", body: JSON.stringify(datos) });
 }
 export function listarPagosApi(pedidoId) {
   const q = pedidoId ? `?pedidoId=${encodeURIComponent(pedidoId)}` : "";
-  return solicitar(`/api/pagos${q}`);
+  return solicitar(`/api/v1/pagos${q}`);
 }
-export function obtenerPagoApi(id) { return solicitar(`/api/pagos/${id}`); }
-export function confirmarPagoApi(id) { return solicitar(`/api/pagos/${id}/confirmar`, { method: "PATCH" }); }
+export function obtenerPagoApi(id) { return solicitar(`/api/v1/pagos/${id}`); }
+export function confirmarPagoApi(id) { return solicitar(`/api/v1/pagos/${id}/confirmar`, { method: "PATCH" }); }
 export function verificarSalud() { return solicitar("/api/health"); }

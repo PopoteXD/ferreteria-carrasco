@@ -243,6 +243,7 @@ function AdminUsuarios() {
               <label>Rol
                 <select name="tipoUsuario" value={form.tipoUsuario} onChange={cambiarCampo}>
                   <option>Cliente</option>
+                  <option>Vendedor</option>
                   <option>Administrador</option>
                 </select>
               </label>
@@ -289,6 +290,7 @@ function AdminUsuarios() {
                     onChange={(e) => cambiarRol(u, e.target.value)}
                   >
                     <option>Cliente</option>
+                    <option>Vendedor</option>
                     <option>Administrador</option>
                   </select>
                 )}

@@ -22,7 +22,13 @@ public class TokenService {
     }
 
     public static String rolDe(Usuario u) {
-        return UsuarioService.ADMINISTRADOR.equals(u.getTipoUsuario()) ? "ADMIN" : "CLIENTE";
+        if (UsuarioService.ADMINISTRADOR.equals(u.getTipoUsuario())) {
+            return "ADMIN";
+        }
+        if (UsuarioService.VENDEDOR.equals(u.getTipoUsuario())) {
+            return "VENDEDOR";
+        }
+        return "CLIENTE";
     }
 
     public String generar(Usuario u) {

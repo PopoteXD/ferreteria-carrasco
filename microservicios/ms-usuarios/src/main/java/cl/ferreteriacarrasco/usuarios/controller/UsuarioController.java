@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping({"/api/usuarios", "/api/v1/usuarios"})
 public class UsuarioController {
 
     private final UsuarioService service;

@@ -22,7 +22,7 @@ function Navbar() {
         <div className="nav-acciones">
           {usuario ? (
             <>
-              {usuario.tipoUsuario === "Administrador" && (
+              {["Administrador", "Vendedor"].includes(usuario.tipoUsuario) && (
                 <Link to="/admin" className="btn btn-sm btn-secundario">Panel admin</Link>
               )}
               <Link to="/perfil" className="btn btn-sm btn-secundario">Mi Perfil</Link>

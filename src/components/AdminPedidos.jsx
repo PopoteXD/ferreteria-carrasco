@@ -3,6 +3,7 @@ import { formatoCLP } from "../data/productos";
 import { useProductos } from "../context/ProductsContext";
 import { ESTADOS_PEDIDO, cambiarEstadoPedido, leerPedidos } from "../utils/pedidos";
 import { cambiarEstadoPedidoApi, listarPedidosApi, pedidosApiHabilitada } from "../services/pedidosApi";
+import { useAuth } from "../context/AuthContext";
 
 function claseEstado(estado) {
   return `pastilla estado-${estado.replace(/\s/g, "-").toLowerCase()}`;
@@ -10,6 +11,8 @@ function claseEstado(estado) {
 
 function AdminPedidos() {
   const { productos, editarProducto } = useProductos();
+  const { usuario } = useAuth() || {};
+  const esAdmin = !usuario || usuario.tipoUsuario === "Administrador";
   const [pedidos, setPedidos] = useState(() => (pedidosApiHabilitada ? [] : leerPedidos()));
   const [cargando, setCargando] = useState(pedidosApiHabilitada);
   const [filtro, setFiltro] = useState("Todos");
@@ -137,13 +140,15 @@ function AdminPedidos() {
                 <td>{formatoCLP(p.total)}</td>
                 <td><span className={claseEstado(p.estado)}>{p.estado}</span></td>
                 <td className="acciones-tabla">
-                  <select
-                    aria-label={`Estado del pedido ${p.id}`}
-                    value={p.estado}
-                    onChange={(e) => cambiar(p, e.target.value)}
-                  >
-                    {ESTADOS_PEDIDO.map((e) => <option key={e}>{e}</option>)}
-                  </select>
+                  {esAdmin && (
+                    <select
+                      aria-label={`Estado del pedido ${p.id}`}
+                      value={p.estado}
+                      onChange={(e) => cambiar(p, e.target.value)}
+                    >
+                      {ESTADOS_PEDIDO.map((e) => <option key={e}>{e}</option>)}
+                    </select>
+                  )}
                   <button type="button" onClick={() => setAbierto(abierto === p.id ? null : p.id)}>
                     {abierto === p.id ? "Ocultar" : "Detalle"}
                   </button>

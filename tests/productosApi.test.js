@@ -21,7 +21,7 @@ describe("cliente REST de productos", () => {
 
     await expect(api.listarProductos()).resolves.toEqual(respuesta);
     expect(fetchMock).toHaveBeenCalledWith(
-      "http://localhost:8081/api/productos",
+      "http://localhost:8081/api/v1/productos",
       expect.objectContaining({ headers: {} })
     );
     expect(api.productosApiHabilitada).toBe(true);
@@ -36,7 +36,7 @@ describe("cliente REST de productos", () => {
 
     await expect(api.borrarProducto("A/B 1")).resolves.toBeNull();
     expect(fetchMock).toHaveBeenCalledWith(
-      "http://localhost:8081/api/productos/A%2FB%201",
+      "http://localhost:8081/api/v1/productos/A%2FB%201",
       expect.objectContaining({ method: "DELETE" })
     );
   });

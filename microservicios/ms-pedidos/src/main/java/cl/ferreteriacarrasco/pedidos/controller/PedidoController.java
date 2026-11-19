@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/pedidos")
+@RequestMapping({"/api/pedidos", "/api/v1/pedidos"})
 public class PedidoController {
 
     private final PedidoService service;

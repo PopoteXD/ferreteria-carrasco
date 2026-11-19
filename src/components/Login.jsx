@@ -24,7 +24,7 @@ function Login() {
       return;
     }
 
-    navigate(resultado.usuario.tipoUsuario === "Administrador" ? "/admin" : "/");
+    navigate(["Administrador", "Vendedor"].includes(resultado.usuario.tipoUsuario) ? "/admin" : "/");
   }
 
   return (

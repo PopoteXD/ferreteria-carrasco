@@ -11,7 +11,7 @@ import Registro from "./components/Registro";
 import Perfil from "./components/Perfil";
 import Nosotros from "./components/Nosotros";
 import Contacto from "./components/Contacto";
-import RutaAdmin from "./components/RutaAdmin";
+import RutaAdmin, { RutaSoloAdmin } from "./components/RutaAdmin";
 import LayoutAdmin from "./components/LayoutAdmin";
 import AdminDashboard from "./components/AdminDashboard";
 import AdminProductos from "./components/AdminProductos";
@@ -43,16 +43,16 @@ function App() {
 
         {/* rutas anidadas del panel, protegidas */}
         <Route path="/admin" element={<RutaAdmin><LayoutAdmin /></RutaAdmin>}>
-          <Route index element={<AdminDashboard />} />
+          <Route index element={<RutaSoloAdmin><AdminDashboard /></RutaSoloAdmin>} />
           <Route path="pedidos" element={<AdminPedidos />} />
-          <Route path="ofertas" element={<AdminOfertas />} />
-          <Route path="ofertas/nueva" element={<AdminOfertaForm />} />
-          <Route path="ofertas/editar/:id" element={<AdminOfertaForm />} />
-          <Route path="usuarios" element={<AdminUsuarios />} />
-          <Route path="resenas" element={<AdminResenas />} />
+          <Route path="ofertas" element={<RutaSoloAdmin><AdminOfertas /></RutaSoloAdmin>} />
+          <Route path="ofertas/nueva" element={<RutaSoloAdmin><AdminOfertaForm /></RutaSoloAdmin>} />
+          <Route path="ofertas/editar/:id" element={<RutaSoloAdmin><AdminOfertaForm /></RutaSoloAdmin>} />
+          <Route path="usuarios" element={<RutaSoloAdmin><AdminUsuarios /></RutaSoloAdmin>} />
+          <Route path="resenas" element={<RutaSoloAdmin><AdminResenas /></RutaSoloAdmin>} />
           <Route path="productos" element={<AdminProductos />} />
-          <Route path="productos/nuevo" element={<AdminProductoForm />} />
-          <Route path="productos/editar/:codigo" element={<AdminProductoForm />} />
+          <Route path="productos/nuevo" element={<RutaSoloAdmin><AdminProductoForm /></RutaSoloAdmin>} />
+          <Route path="productos/editar/:codigo" element={<RutaSoloAdmin><AdminProductoForm /></RutaSoloAdmin>} />
         </Route>
       </Routes>
     </>

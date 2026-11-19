@@ -48,7 +48,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{productos}}/api/productos",
+              "raw": "{{productos}}/api/v1/productos",
               "host": [
                 "{{productos}}"
               ],
@@ -70,7 +70,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{productos}}/api/productos/HM001",
+              "raw": "{{productos}}/api/v1/productos/HM001",
               "host": [
                 "{{productos}}"
               ],
@@ -98,7 +98,7 @@
               }
             ],
             "url": {
-              "raw": "{{productos}}/api/productos",
+              "raw": "{{productos}}/api/v1/productos",
               "host": [
                 "{{productos}}"
               ],
@@ -131,7 +131,7 @@
               }
             ],
             "url": {
-              "raw": "{{productos}}/api/productos/ZZ001",
+              "raw": "{{productos}}/api/v1/productos/ZZ001",
               "host": [
                 "{{productos}}"
               ],
@@ -160,7 +160,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{productos}}/api/productos/ZZ001",
+              "raw": "{{productos}}/api/v1/productos/ZZ001",
               "host": [
                 "{{productos}}"
               ],
@@ -202,9 +202,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{productos}}/api/ofertas/vigentes",
+              "raw": "{{productos}}/api/v1/ofertas/vigentes",
               "host": [
-                "{{productos}}/api/ofertas/vigentes"
+                "{{productos}}/api/v1/ofertas/vigentes"
               ]
             },
             "auth": {
@@ -218,9 +218,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{productos}}/api/ofertas",
+              "raw": "{{productos}}/api/v1/ofertas",
               "host": [
-                "{{productos}}/api/ofertas"
+                "{{productos}}/api/v1/ofertas"
               ]
             }
           }
@@ -231,9 +231,9 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{productos}}/api/productos/ZZ001",
+              "raw": "{{productos}}/api/v1/productos/ZZ001",
               "host": [
-                "{{productos}}/api/productos/ZZ001"
+                "{{productos}}/api/v1/productos/ZZ001"
               ]
             },
             "auth": {
@@ -268,7 +268,7 @@
               }
             ],
             "url": {
-              "raw": "{{usuarios}}/api/auth/register",
+              "raw": "{{usuarios}}/api/v1/auth/register",
               "host": [
                 "{{usuarios}}"
               ],
@@ -305,7 +305,7 @@
               }
             ],
             "url": {
-              "raw": "{{usuarios}}/api/auth/login",
+              "raw": "{{usuarios}}/api/v1/auth/login",
               "host": [
                 "{{usuarios}}"
               ],
@@ -350,9 +350,9 @@
               }
             ],
             "url": {
-              "raw": "{{usuarios}}/api/usuarios",
+              "raw": "{{usuarios}}/api/v1/usuarios",
               "host": [
-                "{{usuarios}}/api/usuarios"
+                "{{usuarios}}/api/v1/usuarios"
               ]
             },
             "body": {
@@ -372,9 +372,9 @@
               }
             ],
             "url": {
-              "raw": "{{usuarios}}/api/usuarios/2/estado",
+              "raw": "{{usuarios}}/api/v1/usuarios/2/estado",
               "host": [
-                "{{usuarios}}/api/usuarios/2/estado"
+                "{{usuarios}}/api/v1/usuarios/2/estado"
               ]
             },
             "body": {
@@ -394,9 +394,9 @@
               }
             ],
             "url": {
-              "raw": "{{usuarios}}/api/usuarios/2/rol",
+              "raw": "{{usuarios}}/api/v1/usuarios/2/rol",
               "host": [
-                "{{usuarios}}/api/usuarios/2/rol"
+                "{{usuarios}}/api/v1/usuarios/2/rol"
               ]
             },
             "body": {
@@ -411,9 +411,9 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{usuarios}}/api/auth/refresh",
+              "raw": "{{usuarios}}/api/v1/auth/refresh",
               "host": [
-                "{{usuarios}}/api/auth/refresh"
+                "{{usuarios}}/api/v1/auth/refresh"
               ]
             }
           }
@@ -424,7 +424,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{usuarios}}/api/usuarios",
+              "raw": "{{usuarios}}/api/v1/usuarios",
               "host": [
                 "{{usuarios}}"
               ],
@@ -443,7 +443,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{usuarios}}/api/usuarios/1",
+              "raw": "{{usuarios}}/api/v1/usuarios/1",
               "host": [
                 "{{usuarios}}"
               ],
@@ -468,7 +468,7 @@
               }
             ],
             "url": {
-              "raw": "{{usuarios}}/api/usuarios/1",
+              "raw": "{{usuarios}}/api/v1/usuarios/1",
               "host": [
                 "{{usuarios}}"
               ],
@@ -497,7 +497,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{usuarios}}/api/usuarios/1",
+              "raw": "{{usuarios}}/api/v1/usuarios/1",
               "host": [
                 "{{usuarios}}"
               ],
@@ -517,7 +517,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{usuarios}}/api/ubicaciones/regiones",
+              "raw": "{{usuarios}}/api/v1/ubicaciones/regiones",
               "host": [
                 "{{usuarios}}"
               ],
@@ -540,7 +540,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{usuarios}}/api/ubicaciones/comunas?region=Region de Tarapaca",
+              "raw": "{{usuarios}}/api/v1/ubicaciones/comunas?region=Region de Tarapaca",
               "host": [
                 "{{usuarios}}"
               ],
@@ -595,7 +595,7 @@
               }
             ],
             "url": {
-              "raw": "{{pedidos}}/api/pedidos",
+              "raw": "{{pedidos}}/api/v1/pedidos",
               "host": [
                 "{{pedidos}}"
               ],
@@ -623,7 +623,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{pedidos}}/api/pedidos",
+              "raw": "{{pedidos}}/api/v1/pedidos",
               "host": [
                 "{{pedidos}}"
               ],
@@ -642,7 +642,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{pedidos}}/api/pedidos?correo=ana@gmail.com",
+              "raw": "{{pedidos}}/api/v1/pedidos?correo=ana@gmail.com",
               "host": [
                 "{{pedidos}}"
               ],
@@ -661,7 +661,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{pedidos}}/api/pedidos/PED-1001",
+              "raw": "{{pedidos}}/api/v1/pedidos/PED-1001",
               "host": [
                 "{{pedidos}}"
               ],
@@ -686,7 +686,7 @@
               }
             ],
             "url": {
-              "raw": "{{pedidos}}/api/pedidos/PED-1001/estado",
+              "raw": "{{pedidos}}/api/v1/pedidos/PED-1001/estado",
               "host": [
                 "{{pedidos}}"
               ],
@@ -716,7 +716,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{pedidos}}/api/pedidos/resumen",
+              "raw": "{{pedidos}}/api/v1/pedidos/resumen",
               "host": [
                 "{{pedidos}}"
               ],
@@ -768,7 +768,7 @@
               }
             ],
             "url": {
-              "raw": "{{contacto}}/api/contacto",
+              "raw": "{{contacto}}/api/v1/contacto",
               "host": [
                 "{{contacto}}"
               ],
@@ -799,7 +799,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{contacto}}/api/contacto",
+              "raw": "{{contacto}}/api/v1/contacto",
               "host": [
                 "{{contacto}}"
               ],
@@ -818,7 +818,7 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "{{contacto}}/api/contacto/1/leido",
+              "raw": "{{contacto}}/api/v1/contacto/1/leido",
               "host": [
                 "{{contacto}}"
               ],
@@ -839,7 +839,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{contacto}}/api/contacto/1",
+              "raw": "{{contacto}}/api/v1/contacto/1",
               "host": [
                 "{{contacto}}"
               ],
@@ -891,7 +891,7 @@
               }
             ],
             "url": {
-              "raw": "{{pagos}}/api/pagos",
+              "raw": "{{pagos}}/api/v1/pagos",
               "host": [
                 "{{pagos}}"
               ],
@@ -924,7 +924,7 @@
               }
             ],
             "url": {
-              "raw": "{{pagos}}/api/pagos",
+              "raw": "{{pagos}}/api/v1/pagos",
               "host": [
                 "{{pagos}}"
               ],
@@ -952,7 +952,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{pagos}}/api/pagos",
+              "raw": "{{pagos}}/api/v1/pagos",
               "host": [
                 "{{pagos}}"
               ],
@@ -971,7 +971,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{pagos}}/api/pagos?pedidoId=PED-1001",
+              "raw": "{{pagos}}/api/v1/pagos?pedidoId=PED-1001",
               "host": [
                 "{{pagos}}"
               ],
@@ -990,7 +990,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{pagos}}/api/pagos/1",
+              "raw": "{{pagos}}/api/v1/pagos/1",
               "host": [
                 "{{pagos}}"
               ],
@@ -1010,7 +1010,7 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "{{pagos}}/api/pagos/1/confirmar",
+              "raw": "{{pagos}}/api/v1/pagos/1/confirmar",
               "host": [
                 "{{pagos}}"
               ],

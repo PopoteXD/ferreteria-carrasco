@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/contacto")
+@RequestMapping({"/api/contacto", "/api/v1/contacto"})
 public class MensajeController {
 
     private final MensajeService service;

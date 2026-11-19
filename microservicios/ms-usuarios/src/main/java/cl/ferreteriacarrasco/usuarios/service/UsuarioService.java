@@ -22,6 +22,7 @@ public class UsuarioService {
 
     public static final String CLIENTE = "Cliente";
     public static final String ADMINISTRADOR = "Administrador";
+    public static final String VENDEDOR = "Vendedor";
 
     private final UsuarioRepository repository;
     private final BCryptPasswordEncoder encoder;

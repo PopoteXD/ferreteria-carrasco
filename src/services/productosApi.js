@@ -42,23 +42,23 @@ export async function solicitar(ruta, opciones = {}) {
 }
 
 export function listarProductos() {
-  return solicitar("/api/productos");
+  return solicitar("/api/v1/productos");
 }
 
 export function crearProducto(producto) {
-  return solicitar("/api/productos", {
+  return solicitar("/api/v1/productos", {
     method: "POST",
     body: JSON.stringify(producto),
   });
 }
 
 export function actualizarProducto(codigo, producto) {
-  return solicitar(`/api/productos/${encodeURIComponent(codigo)}`, {
+  return solicitar(`/api/v1/productos/${encodeURIComponent(codigo)}`, {
     method: "PUT",
     body: JSON.stringify(producto),
   });
 }
 
 export function borrarProducto(codigo) {
-  return solicitar(`/api/productos/${encodeURIComponent(codigo)}`, { method: "DELETE" });
+  return solicitar(`/api/v1/productos/${encodeURIComponent(codigo)}`, { method: "DELETE" });
 }

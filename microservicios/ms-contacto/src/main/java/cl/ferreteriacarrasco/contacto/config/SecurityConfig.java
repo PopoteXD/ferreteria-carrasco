@@ -48,7 +48,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/error", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/health").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/contacto").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/contacto", "/api/v1/contacto").permitAll()
                         .anyRequest().hasRole("ADMIN"))
                 .oauth2ResourceServer(o -> o.jwt(j -> j.jwtAuthenticationConverter(convertidor)));
         return http.build();

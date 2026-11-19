@@ -43,18 +43,18 @@ async function solicitar(ruta, opciones = {}) {
 }
 
 export function crearPedidoApi(datos) {
-  return solicitar("/api/pedidos", { method: "POST", body: JSON.stringify(datos) });
+  return solicitar("/api/v1/pedidos", { method: "POST", body: JSON.stringify(datos) });
 }
-export function listarPedidosApi() { return solicitar("/api/pedidos"); }
+export function listarPedidosApi() { return solicitar("/api/v1/pedidos"); }
 export function listarPedidosPorCorreoApi(correo) {
-  return solicitar(`/api/pedidos?correo=${encodeURIComponent(correo)}`);
+  return solicitar(`/api/v1/pedidos?correo=${encodeURIComponent(correo)}`);
 }
-export function obtenerPedidoApi(id) { return solicitar(`/api/pedidos/${encodeURIComponent(id)}`); }
+export function obtenerPedidoApi(id) { return solicitar(`/api/v1/pedidos/${encodeURIComponent(id)}`); }
 export function cambiarEstadoPedidoApi(id, estado) {
-  return solicitar(`/api/pedidos/${encodeURIComponent(id)}/estado`, {
+  return solicitar(`/api/v1/pedidos/${encodeURIComponent(id)}/estado`, {
     method: "PATCH",
     body: JSON.stringify({ estado }),
   });
 }
-export function resumenPedidosApi() { return solicitar("/api/pedidos/resumen"); }
+export function resumenPedidosApi() { return solicitar("/api/v1/pedidos/resumen"); }
 export function verificarSalud() { return solicitar("/api/health"); }

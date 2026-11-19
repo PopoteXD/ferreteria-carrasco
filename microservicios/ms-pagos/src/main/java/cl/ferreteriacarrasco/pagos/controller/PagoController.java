@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/pagos")
+@RequestMapping({"/api/pagos", "/api/v1/pagos"})
 public class PagoController {
 
     private final PagoService service;

@@ -2,17 +2,19 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const OPCIONES = [
-  { to: "/admin", texto: "Resumen", icono: "📊", end: true },
+  { to: "/admin", texto: "Resumen", icono: "📊", end: true, soloAdmin: true },
   { to: "/admin/pedidos", texto: "Pedidos", icono: "🧾" },
   { to: "/admin/productos", texto: "Productos", icono: "📦" },
-  { to: "/admin/ofertas", texto: "Ofertas", icono: "🏷️" },
-  { to: "/admin/usuarios", texto: "Usuarios", icono: "👥" },
-  { to: "/admin/resenas", texto: "Reseñas", icono: "⭐" },
+  { to: "/admin/ofertas", texto: "Ofertas", icono: "🏷️", soloAdmin: true },
+  { to: "/admin/usuarios", texto: "Usuarios", icono: "👥", soloAdmin: true },
+  { to: "/admin/resenas", texto: "Reseñas", icono: "⭐", soloAdmin: true },
   { to: "/", texto: "Ver tienda", icono: "🌐" },
 ];
 
 function LayoutAdmin() {
   const { usuario } = useAuth();
+  const esAdmin = usuario.tipoUsuario === "Administrador";
+  const opciones = OPCIONES.filter((o) => esAdmin || !o.soloAdmin);
 
   return (
     <div className="diseno-admin">
@@ -20,10 +22,10 @@ function LayoutAdmin() {
         <div className="marca-admin">
           Carrasco
           <br />
-          <small>PANEL ADMIN</small>
+          <small>{esAdmin ? "PANEL ADMIN" : "PANEL VENDEDOR"}</small>
         </div>
         <nav aria-label="Navegación del panel">
-          {OPCIONES.map((o) => (
+          {opciones.map((o) => (
             <NavLink key={o.to} to={o.to} end={o.end}>
               <span aria-hidden="true">{o.icono}</span> {o.texto}
             </NavLink>
@@ -33,7 +35,7 @@ function LayoutAdmin() {
 
       <div className="admin-principal">
         <div className="admin-encabezado">
-          <h1>Panel administrador</h1>
+          <h1>{esAdmin ? "Panel administrador" : "Panel de vendedor"}</h1>
           <span>Hola, <strong>{usuario.nombre} {usuario.apellidos}</strong></span>
         </div>
         <div className="admin-contenido">

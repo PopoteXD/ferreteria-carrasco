@@ -44,30 +44,30 @@ async function solicitar(ruta, opciones = {}) {
 }
 
 export function iniciarSesionApi(correo, clave) {
-  return solicitar("/api/auth/login", { method: "POST", body: JSON.stringify({ correo, clave }) });
+  return solicitar("/api/v1/auth/login", { method: "POST", body: JSON.stringify({ correo, clave }) });
 }
 export function registrarApi(datos) {
-  return solicitar("/api/auth/register", { method: "POST", body: JSON.stringify(datos) });
+  return solicitar("/api/v1/auth/register", { method: "POST", body: JSON.stringify(datos) });
 }
 export function actualizarPerfilApi(id, datos) {
-  return solicitar(`/api/usuarios/${id}`, { method: "PUT", body: JSON.stringify(datos) });
+  return solicitar(`/api/v1/usuarios/${id}`, { method: "PUT", body: JSON.stringify(datos) });
 }
-export function listarUsuariosApi() { return solicitar("/api/usuarios"); }
-export function obtenerUsuarioApi(id) { return solicitar(`/api/usuarios/${id}`); }
-export function eliminarUsuarioApi(id) { return solicitar(`/api/usuarios/${id}`, { method: "DELETE" }); }
+export function listarUsuariosApi() { return solicitar("/api/v1/usuarios"); }
+export function obtenerUsuarioApi(id) { return solicitar(`/api/v1/usuarios/${id}`); }
+export function eliminarUsuarioApi(id) { return solicitar(`/api/v1/usuarios/${id}`, { method: "DELETE" }); }
 export function cambiarRolUsuarioApi(id, tipoUsuario) {
-  return solicitar(`/api/usuarios/${id}/rol`, { method: "PATCH", body: JSON.stringify({ tipoUsuario }) });
+  return solicitar(`/api/v1/usuarios/${id}/rol`, { method: "PATCH", body: JSON.stringify({ tipoUsuario }) });
 }
-export function listarRegionesApi() { return solicitar("/api/ubicaciones/regiones"); }
-export function listarComunasApi(region) { return solicitar(`/api/ubicaciones/comunas?region=${encodeURIComponent(region)}`); }
+export function listarRegionesApi() { return solicitar("/api/v1/ubicaciones/regiones"); }
+export function listarComunasApi(region) { return solicitar(`/api/v1/ubicaciones/comunas?region=${encodeURIComponent(region)}`); }
 export function verificarSalud() { return solicitar("/api/health"); }
-export function refrescarSesionApi() { return solicitar("/api/auth/refresh", { method: "POST" }); }
+export function refrescarSesionApi() { return solicitar("/api/v1/auth/refresh", { method: "POST" }); }
 export function crearUsuarioApi(datos) {
-  return solicitar("/api/usuarios", { method: "POST", body: JSON.stringify(datos) });
+  return solicitar("/api/v1/usuarios", { method: "POST", body: JSON.stringify(datos) });
 }
 export function editarUsuarioApi(id, datos) {
-  return solicitar(`/api/usuarios/${id}`, { method: "PUT", body: JSON.stringify(datos) });
+  return solicitar(`/api/v1/usuarios/${id}`, { method: "PUT", body: JSON.stringify(datos) });
 }
 export function cambiarEstadoUsuarioApi(id, activo) {
-  return solicitar(`/api/usuarios/${id}/estado`, { method: "PATCH", body: JSON.stringify({ activo }) });
+  return solicitar(`/api/v1/usuarios/${id}/estado`, { method: "PATCH", body: JSON.stringify({ activo }) });
 }

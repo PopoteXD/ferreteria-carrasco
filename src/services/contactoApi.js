@@ -43,11 +43,11 @@ async function solicitar(ruta, opciones = {}) {
 }
 
 export function enviarMensajeApi(datos) {
-  return solicitar("/api/contacto", { method: "POST", body: JSON.stringify(datos) });
+  return solicitar("/api/v1/contacto", { method: "POST", body: JSON.stringify(datos) });
 }
-export function listarMensajesApi() { return solicitar("/api/contacto"); }
+export function listarMensajesApi() { return solicitar("/api/v1/contacto"); }
 export function marcarLeidoApi(id, valor = true) {
-  return solicitar(`/api/contacto/${id}/leido?valor=${valor}`, { method: "PATCH" });
+  return solicitar(`/api/v1/contacto/${id}/leido?valor=${valor}`, { method: "PATCH" });
 }
-export function eliminarMensajeApi(id) { return solicitar(`/api/contacto/${id}`, { method: "DELETE" }); }
+export function eliminarMensajeApi(id) { return solicitar(`/api/v1/contacto/${id}`, { method: "DELETE" }); }
 export function verificarSalud() { return solicitar("/api/health"); }

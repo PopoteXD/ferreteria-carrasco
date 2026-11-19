@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/api/ubicaciones")
+@RequestMapping({"/api/ubicaciones", "/api/v1/ubicaciones"})
 public class UbicacionController {
 
     @GetMapping

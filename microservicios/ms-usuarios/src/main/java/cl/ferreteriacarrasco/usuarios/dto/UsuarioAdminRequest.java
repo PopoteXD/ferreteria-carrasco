@@ -23,7 +23,7 @@ public record UsuarioAdminRequest(
         @Size(min = 6, max = 60, message = "La clave debe tener entre 6 y 60 caracteres")
         String clave,
         @NotBlank(message = "El rol es obligatorio")
-        @Pattern(regexp = "Cliente|Administrador", message = "Rol permitido: Cliente o Administrador")
+        @Pattern(regexp = "Cliente|Administrador|Vendedor", message = "Rol permitido: Cliente, Vendedor o Administrador")
         String tipoUsuario,
         @Size(max = 80, message = "Región demasiado larga") String region,
         @Size(max = 80, message = "Comuna demasiado larga") String comuna,
