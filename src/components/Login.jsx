@@ -24,7 +24,9 @@ function Login() {
       return;
     }
 
-    navigate(["Administrador", "Vendedor"].includes(resultado.usuario.tipoUsuario) ? "/admin" : "/");
+    const nombre = resultado.usuario?.nombre ? `, ${resultado.usuario.nombre}` : "";
+    window.alert(`Sesion iniciada correctamente${nombre}. Bienvenido a Ferreteria Carrasco.`);
+    navigate("/");
   }
 
   return (

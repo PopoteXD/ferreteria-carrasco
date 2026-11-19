@@ -31,6 +31,7 @@ describe("Login", () => {
 
   beforeEach(() => {
     navigateMock.mockClear();
+    vi.stubGlobal("alert", vi.fn());
     iniciarSesion = vi.fn();
     useAuth.mockReturnValue({ iniciarSesion });
   });
@@ -88,14 +89,18 @@ describe("Login", () => {
     expect(navigateMock).toHaveBeenCalledWith("/");
   });
 
-  it("redirige al panel cuando ingresa un administrador", async () => {
-    iniciarSesion.mockReturnValue({ ok: true, usuario: { tipoUsuario: "Administrador" } });
+  it("avisa que la sesion se inicio y lleva al menu principal", async () => {
+    iniciarSesion.mockReturnValue({
+      ok: true,
+      usuario: { tipoUsuario: "Administrador", nombre: "Luis" },
+    });
     const user = userEvent.setup();
     renderLogin();
 
     await completar(user, "luis.ferreteria373@gmail.com", "admin123");
     await user.click(screen.getByRole("button", { name: /ingresar/i }));
 
-    expect(navigateMock).toHaveBeenCalledWith("/admin");
+    expect(window.alert).toHaveBeenCalledWith(expect.stringMatching(/sesion iniciada correctamente/i));
+    expect(navigateMock).toHaveBeenCalledWith("/");
   });
 });
