@@ -1,4 +1,5 @@
 import { cabeceraAuth, avisarSiExpirada } from "./sesion";
+import { fetchConTiempo } from "./http";
 // Cliente HTTP para ms-pedidos (http://localhost:8083 por defecto).
 // Usa VITE_PEDIDOS_API_URL. Si no está configurada, habilitado=false.
 
@@ -9,7 +10,7 @@ async function solicitar(ruta, opciones = {}) {
   if (!BASE) throw new Error("ms-pedidos no está configurado (VITE_PEDIDOS_API_URL).");
   let resp;
   try {
-    resp = await fetch(`${BASE}${ruta}`, {
+    resp = await fetchConTiempo(`${BASE}${ruta}`, {
       ...opciones,
       headers: {
         ...(opciones.body ? { "Content-Type": "application/json" } : {}),

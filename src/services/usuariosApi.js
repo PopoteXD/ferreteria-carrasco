@@ -1,4 +1,5 @@
 import { cabeceraAuth, avisarSiExpirada } from "./sesion";
+import { fetchConTiempo } from "./http";
 // Cliente HTTP para ms-usuarios (http://localhost:8082 por defecto).
 // Usa VITE_USUARIOS_API_URL. Si no está configurada, devuelve null habilitado=false
 // para que el frontend pueda operar en modo local (sin backend).
@@ -10,7 +11,7 @@ async function solicitar(ruta, opciones = {}) {
   if (!BASE) throw new Error("ms-usuarios no está configurado (VITE_USUARIOS_API_URL).");
   let resp;
   try {
-    resp = await fetch(`${BASE}${ruta}`, {
+    resp = await fetchConTiempo(`${BASE}${ruta}`, {
       ...opciones,
       headers: {
         ...(opciones.body ? { "Content-Type": "application/json" } : {}),

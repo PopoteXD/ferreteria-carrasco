@@ -1,4 +1,5 @@
 import { cabeceraAuth, avisarSiExpirada } from "./sesion";
+import { fetchConTiempo } from "./http";
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").trim().replace(/\/$/, "");
 
 export const productosApiHabilitada = Boolean(API_BASE_URL);
@@ -10,7 +11,7 @@ export async function solicitar(ruta, opciones = {}) {
 
   let respuesta;
   try {
-    respuesta = await fetch(`${API_BASE_URL}${ruta}`, {
+    respuesta = await fetchConTiempo(`${API_BASE_URL}${ruta}`, {
       ...opciones,
       headers: {
         ...(opciones.body ? { "Content-Type": "application/json" } : {}),

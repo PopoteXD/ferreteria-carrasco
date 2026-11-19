@@ -1,4 +1,5 @@
 import { cabeceraAuth, avisarSiExpirada } from "./sesion";
+import { fetchConTiempo } from "./http";
 // Cliente HTTP para ms-pagos (http://localhost:8085 por defecto).
 // Usa VITE_PAGOS_API_URL.
 
@@ -9,7 +10,7 @@ async function solicitar(ruta, opciones = {}) {
   if (!BASE) throw new Error("ms-pagos no está configurado (VITE_PAGOS_API_URL).");
   let resp;
   try {
-    resp = await fetch(`${BASE}${ruta}`, {
+    resp = await fetchConTiempo(`${BASE}${ruta}`, {
       ...opciones,
       headers: {
         ...(opciones.body ? { "Content-Type": "application/json" } : {}),
